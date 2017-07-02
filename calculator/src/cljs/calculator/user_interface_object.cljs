@@ -1,5 +1,9 @@
 (ns calculator.user-interface-object
-  (:require [rum.core :as rum]))
+  (:require [calculator.control-object :as control-object]
+            [rum.core :as rum]))
+
+
+(enable-console-print!)
 
 
 (rum/defc main-screen < rum/reactive [*app-state]
@@ -37,5 +41,6 @@
      [:div (str state)]]))
 
 
-(defn render [*app-state js-dom]
-  (rum/mount (main-screen *app-state) js-dom))
+(defn render [*app-state]
+  (rum/mount (main-screen *app-state) (. js/document (getElementById "app"))))
+

@@ -1,5 +1,5 @@
 (ns cljs.user
-  (:require [calculator.core]
+  (:require [calculator.user-interface-object]
             [calculator.system :as system]))
 
 (def go system/go)

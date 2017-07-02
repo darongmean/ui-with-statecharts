@@ -1,11 +1,11 @@
 (ns calculator.components.ui
   (:require [com.stuartsierra.component :as component]
-            [calculator.core :refer [render]]))
+            [calculator.user-interface-object :refer [render]]))
 
-(defrecord UIComponent []
+(defrecord UIComponent [control-object-component]
   component/Lifecycle
   (start [component]
-    (render)
+    (render (:app-state-atom control-object-component))
     component)
   (stop [component]
     component))
