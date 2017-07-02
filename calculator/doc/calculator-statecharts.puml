@@ -1,0 +1,13 @@
+@startuml
+
+[*] --> 1.start
+
+1.start --> 2.operand1 : num(0)\nnum(1-9)\ndecimal pnt
+
+2.operand1 --> 3.operator_entered : +,-,x,/
+
+3.operator_entered --> 4.operand2 : num(0)\nnum(1-9)\ndecimal pnt
+
+4.operand2 --> 1.start : =
+
+@enduml
