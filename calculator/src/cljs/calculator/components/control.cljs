@@ -5,9 +5,7 @@
 
 (defrecord ControlObjectComponent [app-state-atom]
   component/Lifecycle
-  (start [this]
-    (control-object/init-state app-state-atom)
-    this)
+  (start [this] this)
   (stop [this]
     (assoc this :app-state-atom (atom nil))))
 
