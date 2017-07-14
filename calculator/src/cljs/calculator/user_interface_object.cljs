@@ -14,33 +14,33 @@
       [:tbody
        [:tr
         [:td {:colSpan "5"} (condp = state
-                              control-object/start-state result
-                              control-object/operand2-state num2
+                              control-object/start-state-tag result
+                              control-object/operand2-state-tag num2
                               num1)]]
        [:tr
-        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/num 7))} "7"]]
-        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/num 8))} "8"]]
-        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/num 9))} "9"]]
+        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/num-event 7))} "7"]]
+        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/num-event 8))} "8"]]
+        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/num-event 9))} "9"]]
         [:td [:button "C"]]
         [:td [:button "CE"]]]
        [:tr
-        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/num 4))} "4"]]
-        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/num 5))} "5"]]
-        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/num 6))} "6"]]
-        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/operator +))} "+"]]
-        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/operator -))} "-"]]]
+        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/num-event 4))} "4"]]
+        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/num-event 5))} "5"]]
+        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/num-event 6))} "6"]]
+        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/operator-event +))} "+"]]
+        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/operator-event -))} "-"]]]
        [:tr
-        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/num 1))} "1"]]
-        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/num 2))} "2"]]
-        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/num 3))} "3"]]
-        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/operator *))} "x"]]
-        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/operator /))} "/"]]]
+        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/num-event 1))} "1"]]
+        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/num-event 2))} "2"]]
+        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/num-event 3))} "3"]]
+        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/operator-event *))} "x"]]
+        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/operator-event /))} "/"]]]
        [:tr
-        [:td {:colSpan 2} [:button {:on-click #(control-object/dispatch *app-state (control-object/num 0))} "0"]]
+        [:td {:colSpan 2} [:button {:on-click #(control-object/dispatch *app-state (control-object/num-event 0))} "0"]]
         [:td [:button "."]]
-        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/equal))} "="]]
+        [:td [:button {:on-click #(control-object/dispatch *app-state (control-object/equal-event))} "="]]
         [:td [:button "%"]]]]]
-     [:h4 "st"]
+     [:h4 "state"]
      [:div (str st)]]))
 
 
