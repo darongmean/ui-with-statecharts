@@ -39,4 +39,3 @@
     (assoc :num1 0)
     (assoc :num2 0)
     (assoc :result (operator num1 num2))))
-
