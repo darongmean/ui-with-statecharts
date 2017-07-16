@@ -1,6 +1,6 @@
 (ns calculator.user-interface-object
   (:require [calculator.control-object :as control-object]
-            [calculator.statemachine.state :as state]
+            [calculator.statemachine.state-tag :as state-tag]
             [calculator.statemachine.event :as event]
             [rum.core :as rum]))
 
@@ -16,8 +16,8 @@
       [:tbody
        [:tr
         [:td {:colSpan "5"} (condp = state
-                              state/start-state-tag result
-                              state/operand2-state-tag num2
+                              state-tag/start result
+                              state-tag/operand2 num2
                               num1)]]
        [:tr
         [:td [:button {:on-click #(control-object/dispatch *app-state (event/num-event 7))} "7"]]

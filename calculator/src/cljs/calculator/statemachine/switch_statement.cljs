@@ -1,65 +1,27 @@
 (ns calculator.statemachine.switch-statement
-  (:require [calculator.statemachine.state :as state]
+  (:require [calculator.statemachine.state-tag :as state-tag]
+            [calculator.statemachine.state :as state]
             [calculator.statemachine.event :as event]))
-
-
-(defn ignore [app-state event]
-  (do (println "no match signal: " event)
-      app-state))
-
-
-(defn operand1-state [app-state {:keys [number]}]
-  (-> app-state
-    (assoc :state state/operand1-state-tag)
-    (assoc :num1 number)))
-
-
-(defn operator-entered-state [app-state {:keys [operator]}]
-  (-> app-state
-    (assoc :state state/operator-entered-state-tag)
-    (assoc :operator operator)))
-
-
-(defn operand2-state [app-state {:keys [number]}]
-  (-> app-state
-    (assoc :state state/operand2-state-tag)
-    (assoc :num2 number)))
-
-
-(defn start-state [{:keys [operator num1 num2] :as app-state}]
-  (-> app-state
-    (assoc :state state/start-state-tag)
-    (assoc :num1 0)
-    (assoc :num2 0)
-    (assoc :result (operator num1 num2))))
-
-
-(def init-state
-  {:state    state/start-state-tag
-   :num1     0
-   :num2     0
-   :operator nil
-   :result   0})
 
 
 (defn transition-state [{:keys [state] :as app-state} {:keys [signal] :as event}]
   (condp = state
-    state/start-state-tag
+    state-tag/start
     (condp = signal
-      event/num-sig (operand1-state app-state event)
-      (ignore app-state event))
+      event/num-sig (state/operand1 app-state event)
+      (state/ignore app-state event))
 
-    state/operand1-state-tag
+    state-tag/operand1
     (condp = signal
-      event/operator-sig (operator-entered-state app-state event)
-      (ignore app-state event))
+      event/operator-sig (state/operator-entered app-state event)
+      (state/ignore app-state event))
 
-    state/operator-entered-state-tag
+    state-tag/operator-entered
     (condp = signal
-      event/num-sig (operand2-state app-state event)
-      (ignore app-state event))
+      event/num-sig (state/operand2 app-state event)
+      (state/ignore app-state event))
 
-    state/operand2-state-tag
+    state-tag/operand2
     (condp = signal
-      event/equal-sig (start-state app-state)
-      (ignore app-state event))))
+      event/equal-sig (state/start app-state)
+      (state/ignore app-state event))))

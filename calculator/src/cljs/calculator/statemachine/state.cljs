@@ -1,13 +1,42 @@
-(ns calculator.statemachine.state)
+(ns calculator.statemachine.state
+  (:require [calculator.statemachine.state-tag :as state-tag]))
 
 
-(def start-state-tag :1.start)
+(def init
+  {:state    state-tag/start
+   :num1     0
+   :num2     0
+   :operator nil
+   :result   0})
 
 
-(def operand1-state-tag :2.operand1)
+(defn ignore [app-state event]
+  (do (println "no match signal: " event)
+      app-state))
 
 
-(def operator-entered-state-tag :3.operator_entered)
+(defn operand1 [app-state {:keys [number]}]
+  (-> app-state
+    (assoc :state state-tag/operand1)
+    (assoc :num1 number)))
 
 
-(def operand2-state-tag :4.operand2)
+(defn operator-entered [app-state {:keys [operator]}]
+  (-> app-state
+    (assoc :state state-tag/operator-entered)
+    (assoc :operator operator)))
+
+
+(defn operand2 [app-state {:keys [number]}]
+  (-> app-state
+    (assoc :state state-tag/operand2)
+    (assoc :num2 number)))
+
+
+(defn start [{:keys [operator num1 num2] :as app-state}]
+  (-> app-state
+    (assoc :state state-tag/start)
+    (assoc :num1 0)
+    (assoc :num2 0)
+    (assoc :result (operator num1 num2))))
+
