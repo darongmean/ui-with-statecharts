@@ -43,7 +43,7 @@
         [:td [:button {:on-click #(control-object/dispatch *app-state (event/equal-event))} "="]]
         [:td [:button "%"]]]]]
      [:h4 "state"]
-     [:div (str st)]]))
+     [:div (print-str st)]]))
 
 
 (defn render [*app-state]
